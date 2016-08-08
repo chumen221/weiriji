@@ -4,7 +4,7 @@
 ##项目主要结构
 /src/com/cheng 为核心代码文件
 /src/com 同级目录为配置文件
-/src/weiriji_config.txt 为核心配置文件：配置jdbc驱动，微信测试帐号回调Token,appId,appSecret;测试帐号下，消息加解密方式默认为明文，否则会出现xml解析出错
+/src/weiriji_config.txt 为核心配置文件：配置jdbc驱动，微信测试帐号回调Token，appId，appSecret；测试帐号下，消息加解密方式默认为明文，否则会出现xml解析出错
 
 mail.properties 文件（邮箱注册、找回密码会使用到）
 
