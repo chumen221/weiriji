@@ -70,79 +70,16 @@ public class WeixinMsgController extends MsgControllerAdapter {
 	protected void processInTextMsg(InTextMsg inTextMsg)
 	{
 		String msgContent = inTextMsg.getContent().trim();
-		// 帮助提示
-		if ("help".equalsIgnoreCase(msgContent) || "帮助".equals(msgContent)) {
-			OutTextMsg outMsg = new OutTextMsg(inTextMsg);
-			outMsg.setContent(helpStr);
-			render(outMsg);
-		}else if (msgContent.equals("1") || msgContent.equals("人脸识别")) {
-			msgContent = "请发一张清晰的照片！" + WeiXinUtils.emoji(0x1F4F7);
-			renderOutTextMsg(msgContent);
-		}else if (msgContent.startsWith("翻译")) {
-				try {
-					msgContent = BaiduTranslate.Translates(msgContent);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					msgContent = "\ue252 翻译出错了 \n\n" + BaiduTranslate.getGuide();
-				}
-				renderOutTextMsg(msgContent);
-		}else if (msgContent.equals("9") || "QQ咨询".equalsIgnoreCase(msgContent)) {
-			String url="http://wpa.qq.com/msgrd?v=3&uin=1472405080&site=qq&menu=yes";
-			String urlStr="<a href=\""+url+"\">点击咨询</a>";
-			renderOutTextMsg("QQ在线咨询"+urlStr);
-		}else if (msgContent.equals("微信支付")) {
-			String url="http://javen.ngrok.natapp.cn/pay?openId=o_pncsidC-pRRfCP4zj98h6slREw";
-			String urlStr="<a href=\""+url+"\">微信支付测试</a>";
-			renderOutTextMsg(urlStr);
-		}else if (msgContent.equals("微信支付测试")) {
-			String url="http://javen.ngrok.natapp.cn/paytest?openId=o_pncsidC-pRRfCP4zj98h6slREw";
-			String urlStr="<a href=\""+url+"\">微信支付测试</a>";
-			renderOutTextMsg(urlStr);
-		}else if (msgContent.equals("8")) {
-			String calbackUrl=PropKit.get("domain")+"/oauth";
-			String url=SnsAccessTokenApi.getAuthorizeURL(PropKit.get("appId"), calbackUrl, "111",false);
-			String urlStr="<a href=\""+url+"\">点击我授权</a>";
-			System.out.println("urlStr "+urlStr);
-			renderOutTextMsg("授权地址"+urlStr);
-		}else if ("jssdk".equalsIgnoreCase(msgContent)) {
-			String url=PropKit.get("domain")+"/jssdk";
-			String urlStr="<a href=\""+url+"\">JSSDK</a>";
-			renderOutTextMsg("地址"+urlStr);
-		}	else if ("模板消息".equalsIgnoreCase(msgContent)) {
-			DataItem2 dataItem=new DataItem2();
-			dataItem.setFirst(new TempItem("您好,你已购买课程成功", "#743A3A"));
-			dataItem.setKeyword1(new TempItem("15FE65EGBE9823", "#FF0000"));
-			dataItem.setKeyword2(new TempItem("39.8元", "#c4c400"));
-			dataItem.setKeyword3(new TempItem("电吉他音乐一对一专业培训", "#c4c400"));
-			dataItem.setKeyword4(new TempItem("高老师020-12345678", "#c4c400"));
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日  HH时mm分ss秒");
-			String time=sdf.format(new Date());
-			dataItem.setKeyword5(new TempItem(time, "#0000FF"));
-			dataItem.setRemark(new TempItem("请点击详情直接看课程直播，祝生活愉快", "#008000"));
-			
-			String json=TempToJson.getTempJson("o_pncsidC-pRRfCP4zj98h6slREw", "7y1wUbeiYFsUONKH1IppVi47WwViICAjREZSdR3Zahc",
-					"#743A3A", "http://www.cnblogs.com/zyw-205520/tag/%E5%BE%AE%E4%BF%A1/", dataItem);
-			
-			ApiResult result=TemplateMsgApi.send(json);
-			 System.out.println(result.getJson());
-			 renderNull();
-		}
-		
-		else {
-			renderOutTextMsg("你发的内容为："+msgContent);
-			//转发给多客服PC客户端
-//			OutCustomMsg outCustomMsg = new OutCustomMsg(inTextMsg);
-//			render(outCustomMsg);
-		}
+		// 帮助提示	
+		//msgContent.equals("1");
+		//"help".equalsIgnoreCase(msgContent
+		renderOutTextMsg("你发的内容为："+msgContent);
 		
 	}
 
 	@Override
 	protected void processInVoiceMsg(InVoiceMsg inVoiceMsg)
 	{
-		//转发给多客服PC客户端
-//		OutCustomMsg outCustomMsg = new OutCustomMsg(inVoiceMsg);
-//		render(outCustomMsg);
 		OutVoiceMsg outMsg = new OutVoiceMsg(inVoiceMsg);
 		// 将刚发过来的语音再发回去
 		outMsg.setMediaId(inVoiceMsg.getMediaId());
@@ -199,9 +136,6 @@ public class WeixinMsgController extends MsgControllerAdapter {
 
 	protected void processInImageMsg(InImageMsg inImageMsg)
 	{
-		//转发给多客服PC客户端
-//		OutCustomMsg outCustomMsg = new OutCustomMsg(inImageMsg);
-//		render(outCustomMsg);
 		String picUrl =inImageMsg.getPicUrl();
 		String respContent=FaceService.detect(picUrl);
 		renderOutTextMsg(respContent);
@@ -268,6 +202,26 @@ public class WeixinMsgController extends MsgControllerAdapter {
 	{
 		logger.debug("菜单事件：" + inMenuEvent.getFromUserName());
 		OutTextMsg outMsg = new OutTextMsg(inMenuEvent);
+		
+		switch(inMenuEvent.getEventKey())
+		{
+			case "rselfmenu_1_1":{
+				logger.debug("click菜单事件：" + inMenuEvent.getEventKey());
+				break;
+			}
+			case "http://www.baidu.com":{
+				logger.debug("view菜单事件：" + inMenuEvent.getEventKey());
+				break;
+			}	
+			case "rselfmenu_3_2":{
+				logger.debug("click菜单事件：" + inMenuEvent.getEventKey());
+				break;
+			}			
+			default:{
+				logger.debug("未识别菜单事件：" + inMenuEvent.getEventKey());
+				break;
+			}		
+		}
 		outMsg.setContent("菜单事件内容是：" + inMenuEvent.getEventKey());
 		render(outMsg);
 	}
