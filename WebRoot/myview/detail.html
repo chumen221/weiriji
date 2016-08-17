@@ -1,0 +1,116 @@
+<!doctype html>
+<html >
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>日记详情</title>
+		
+		
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../wangeditor/css/wangEditor-mobile.css">
+		<style>
+			ul {
+				font-size: 14px;
+				color: #8f8f94;
+			}
+			.mui-btn {
+				padding: 10px;
+			}
+			.mui-input-row {
+				padding: 10px;
+			}
+			.mui-row {
+				font-size: 14px;
+				color: #8f8f94;
+				padding: 10px;
+				height: auto;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<button id="editor" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">编辑</button>
+			<h1 class="mui-title">日记详情</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-group">
+			<div class="mui-content" style="height:50vw;background-image:url(../images/background.jpg)">
+			</div>
+				<h4>
+					<div class="mui-input-row">
+						明天上午九点开会
+					</div>
+				</h4>
+				
+    				<div class="mui-row">
+        				<div class="mui-col-sm-6" style="padding-right: 20px;">
+            				<li class="mui-table-view-cell mui-pull-left">
+                				<p>8月14日</p>
+            				</li>
+        				</div>
+        			<div class="mui-col-sm-6">
+           				 <li class="mui-table-view-cell mui-pull-right">
+           				 	<p>天气：晴</p>
+            			</li>
+        			</div>
+    				</div>
+			</div>	
+		<div class="container" >
+					<textarea id="riji_detail" style="width:100%;height:100%;">
+						<h3>济南的冬天</h3>
+						<p><font color="#ff0000">对于一个在北平住惯的人，像我，冬天要是不刮风，便觉得是奇迹；济南的冬天是没有风声的。</font></p>
+						<p>对于一个刚由伦敦回来的人，像我，冬天要能看得见日光，便觉得是怪事；济南的冬天是响晴的……<img src="http://wangeditor.github.io/expressions/20.gif"></p>
+						<blockquote style="display: block; border-left-width: 5px; border-left-style: solid; border-left-color: rgb(208, 229, 242); padding: 4px 0px 4px 10px; margin: 4px 0px; background-color: rgb(241, 241, 241);">
+							老舍1930年前后来到山东，先后在济南齐鲁大学和青岛山东大学任教7年之久，山东被称为他的“第二故乡”。
+						</blockquote>
+						<strong>作者其他作品：</strong>
+					<ul>
+						<li><span>骆驼祥子</span></li>
+						<li><span>茶馆</span></li>
+						<li><span>四世同堂</span></li>
+					</ul>
+					<p><br></p>
+					<img src="img/daminghu.png" style="max-width:100%;">
+					<p>（图为大明湖雪景）</p>
+					<p><br></p>
+					</textarea>
+		</div>	
+			
+			
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<script type="text/javascript" src="../wangeditor/js/lib/zepto.js"></script>
+		<script type="text/javascript" src="../wangeditor/js/lib/zepto.touch.js"></script>
+		<script type="text/javascript" src="../wangeditor/js/wangEditor-mobile.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			$(function () {
+
+			// 全局配置
+			// ___E.config.menus = ['bold', 'color', 'quote'];
+
+			// 生成编辑器
+			var editor = new ___E('riji_detail');
+
+			// 自定义配置
+			editor.config.uploadImgUrl = '/upload';
+
+			// editor.config.menus = ['bold', 'quote', 'list','img'];
+
+			// 初始化
+			editor.init();
+			
+			editor.disable();
+
+			console.log(editor.$txt);
+			});
+			
+		</script>
+	</body>
+
+</html>

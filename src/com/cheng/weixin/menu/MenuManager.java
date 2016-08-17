@@ -48,15 +48,15 @@ public class MenuManager  {
 	     */  
 	    private static Menu getTestMenu() {
 	    	
-	    	ClickButton btn11 = new ClickButton();  
-	        btn11.setName("短日记");  
-	        btn11.setType("click");  
-	        btn11.setKey("rselfmenu_1_1");
+	    	ViewButton btn11 = new ViewButton();  
+	        btn11.setName("写日记");  
+	        btn11.setType("view");  
+	        btn11.setUrl("http://2a535f60.ngrok.natapp.cn/edit");
 	  	  
 	        ViewButton btn21 = new ViewButton();  
-	        btn21.setName("长日记");  
+	        btn21.setName("我的记录");  
 	        btn21.setType("view");  
-	        btn21.setUrl("http://www.baidu.com"); 
+	        btn21.setUrl("http://2a535f60.ngrok.natapp.cn/myview/mylist"); 
 	        
 	        ViewButton btn31 = new ViewButton();  
 	        btn31.setName("留言墙");  
@@ -64,7 +64,7 @@ public class MenuManager  {
 	        btn31.setUrl("http://www.baidu.com");  
 	          
 	        ClickButton btn32 = new ClickButton();  
-	        btn32.setName("发送位置");  
+	        btn32.setName("任务清单");  
 	        btn32.setType("location_select");  
 	        btn32.setKey("rselfmenu_3_2"); 
 	  

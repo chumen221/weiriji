@@ -5,8 +5,10 @@ import java.io.File;
 import com.cheng.controller.AjaxController;
 import com.cheng.controller.AjaxFileContorlller;
 import com.cheng.controller.ConstellationController;
+import com.cheng.controller.EditController;
 import com.cheng.controller.FileController;
 import com.cheng.controller.IndexController;
+import com.cheng.controller.ListViewController;
 import com.cheng.controller.ShareController;
 import com.cheng.controller.TUserController;
 import com.cheng.model.Course;
@@ -64,7 +66,7 @@ public class APPConfig extends JFinalConfig{
 		loadProp("weiriji_config_pro.txt", "weiriji_config.txt");
 		me.setDevMode(PropKit.getBoolean("devMode", false));
 		me.setEncoding("utf-8");
-		me.setViewType(ViewType.JSP);
+		//me.setViewType(ViewType.JSP);
 		//设置上传文件保存的路径
 		me.setBaseUploadPath(PathKit.getWebRootPath()+File.separator+"myupload");
 		// ApiConfigKit 设为开发模式可以在开发阶段输出请求交互的 xml 与 json 数据
@@ -92,6 +94,12 @@ public class APPConfig extends JFinalConfig{
 		me.add("/wxuser", UserController.class,"/front");
 		me.add("/file", FileController.class,"/front");
 		me.add("/ajaxfile", AjaxFileContorlller.class,"/front");
+		
+		
+		//增加编辑路由
+		me.add("/edit",EditController.class);
+		//增加日记列表查看路由
+		me.add("/myview",ListViewController.class);
 	}
 	
 	/**

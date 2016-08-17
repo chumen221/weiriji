@@ -7,8 +7,8 @@ devMode =true
 token=weiriji
 
 # 测试用的账号
-appId=wx86edd3c828e6650f
-appSecret=b3206e47df95ee2cf61058a3a165e1da
+appId=wx21df297d1cc0260b
+appSecret=ed970993f94bfc3ae83a35b934a52283
 
 
 #是否对消息进行加密，是否对消息进行加密，对应于微信平台的消息加解密方式，false支持明文模式及兼容模式，true支持安全模式及兼容模式
