@@ -6,6 +6,7 @@ import java.util.Date;
 import com.cheng.face.FaceService;
 import com.cheng.utils.WeiXinUtils;
 import com.cheng.weixin.service.BaiduTranslate;
+import com.cheng.weixin.service.ShortDiaryService;
 import com.cheng.weixin.template.DataItem2;
 import com.cheng.weixin.template.TempItem;
 import com.cheng.weixin.template.TempToJson;
@@ -73,7 +74,9 @@ public class WeixinMsgController extends MsgControllerAdapter {
 		// 帮助提示	
 		//msgContent.equals("1");
 		//"help".equalsIgnoreCase(msgContent
-		renderOutTextMsg("你发的内容为："+msgContent);
+		
+		String ret = new ShortDiaryService().dealShortDiary(inTextMsg);
+		renderOutTextMsg(ret);
 		
 	}
 

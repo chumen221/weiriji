@@ -14,7 +14,7 @@ public class TDiaryType extends Model<TDiaryType> {
 	}
 	
 	public List<TDiaryType> getDiaryTypeByUserIdOrderBySeqDesc(String userId) {
-		return dao.find("select * from t_diary_type where USER_ID='*' or USER_ID=? order by tag_seq desc", userId);
+		return dao.find("select * from t_diary_type where USER_ID='*' or USER_ID=? order by seq desc", userId);
 	}
 	
 	public TDiaryType getDiaryTypeByTypeNameAndUserId(String typeName, String userId) {
