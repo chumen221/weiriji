@@ -10,11 +10,12 @@ import com.cheng.controller.FileController;
 import com.cheng.controller.ListViewController;
 import com.cheng.controller.ShareController;
 import com.cheng.controller.TUserController;
-
 import com.cheng.weixin.controller.WeiXinOauthController;
 import com.cheng.weixin.controller.WeixinApiController;
 import com.cheng.weixin.controller.WeixinMsgController;
 import com.cheng.weixin.controller.WeixinPayController;
+import com.cheng.weixin.model.TDiary;
+import com.cheng.weixin.model.TDiaryType;
 import com.cheng.weixin.user.UserController;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
@@ -26,6 +27,8 @@ import com.jfinal.core.JFinal;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.log.Log;
+import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 
 /**
@@ -100,19 +103,21 @@ public class APPConfig extends JFinalConfig{
 	 * 配置插件
 	 */
 	public void configPlugin(Plugins me) {
-//		 C3p0Plugin c3p0Plugin = new C3p0Plugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
-//		 me.add(c3p0Plugin);
+		 C3p0Plugin c3p0Plugin = new C3p0Plugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
+		 me.add(c3p0Plugin);
 //		
-//		// 配置ActiveRecord插件
-//		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
+		// 配置ActiveRecord插件
+		ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
+		arp.addMapping("t_diary_type", "TYPE_ID", TDiaryType.class);
+		arp.addMapping("t_diary", "DIARY_ID", TDiary.class);
 //		arp.addMapping("course", Course.class);
 //		arp.addMapping("orders", Order.class);
 //		arp.addMapping("users","id", Users.class);
 //		arp.addMapping("Tuser", TUser.class);
 //		arp.addMapping("stock", Stock.class);
 //		arp.addMapping("idea", Idea.class);
-//		arp.setShowSql(true);
-//		me.add(arp);
+		arp.setShowSql(true);
+		me.add(arp);
 		
 		// ehcahce插件配置
 		//me.add(new EhCachePlugin());
