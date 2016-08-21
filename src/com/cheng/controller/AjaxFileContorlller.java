@@ -37,7 +37,7 @@ public class AjaxFileContorlller extends Controller{
 		try{
 			UploadFile uploadfile = getFile("imgsil","/temp/"+strDate,maxfile, "UTF-8");
 			File f=uploadfile.getFile();
-			String fileName="/myupload/temp/" +strDate+"/"+System.currentTimeMillis()+getFileExt(uploadfile.getFileName());
+			String fileName="/upload/temp/" +strDate+"/"+System.currentTimeMillis()+getFileExt(uploadfile.getFileName());
 			f.renameTo(new File(PathKit.getWebRootPath()+fileName));
 
 		    json.put("error", 0);
@@ -76,7 +76,7 @@ public class AjaxFileContorlller extends Controller{
 	    			FilePart filePart=(FilePart) part;
 //	    			Map<String,String> fileMap=new HashMap<String, String>();  
 	    			
-	    			String fileName="/myupload/temp/" +strDate+"/"+System.currentTimeMillis()+getFileExt(filePart.getFileName());
+	    			String fileName="/upload/temp/" +strDate+"/"+System.currentTimeMillis()+getFileExt(filePart.getFileName());
 	    			
 //	    			fileMap.put(filePart.getName(), fileName);
 	    			FileOutputStream out =new FileOutputStream(PathKit.getWebRootPath()+fileName);

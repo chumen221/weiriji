@@ -1093,7 +1093,11 @@ window.___E_mod(function (E, $) {
 			            // 添加图片数据
 			            // 1. 图片数据要经过 convertBase64UrlToBlob 转换
 			            // 2. wangEditorMobileFile 要和后台一致
-			            formData.append('wangEditorMobileFile', convertBase64UrlToBlob(base64, fileType));
+			            
+			            //原有设置
+			            //formData.append('wangEditorMobileFile', convertBase64UrlToBlob(base64, fileType));
+			            //powered by cheng 修改上传图片为blob的情况
+			            formData.append("image",file);
 			            xhr.send(formData);
 					};
 

@@ -7,16 +7,10 @@ import com.cheng.controller.AjaxFileContorlller;
 import com.cheng.controller.ConstellationController;
 import com.cheng.controller.EditController;
 import com.cheng.controller.FileController;
-import com.cheng.controller.IndexController;
 import com.cheng.controller.ListViewController;
 import com.cheng.controller.ShareController;
 import com.cheng.controller.TUserController;
-import com.cheng.model.Course;
-import com.cheng.model.Idea;
-import com.cheng.model.Order;
-import com.cheng.model.Stock;
-import com.cheng.model.TUser;
-import com.cheng.model.Users;
+
 import com.cheng.weixin.controller.WeiXinOauthController;
 import com.cheng.weixin.controller.WeixinApiController;
 import com.cheng.weixin.controller.WeixinMsgController;
@@ -32,11 +26,6 @@ import com.jfinal.core.JFinal;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.log.Log;
-import com.cheng.jfinal.plugin.SchedulerPlugin;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.c3p0.C3p0Plugin;
-import com.jfinal.plugin.ehcache.EhCachePlugin;
-import com.jfinal.render.ViewType;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 
 /**
@@ -64,11 +53,11 @@ public class APPConfig extends JFinalConfig{
 	public void configConstant(Constants me) {
 		// 加载少量必要配置，随后可用PropKit.get(...)获取值
 		loadProp("weiriji_config_pro.txt", "weiriji_config.txt");
-		me.setDevMode(PropKit.getBoolean("devMode", false));
+		me.setDevMode(PropKit.getBoolean("devMode", true));
 		me.setEncoding("utf-8");
 		//me.setViewType(ViewType.JSP);
 		//设置上传文件保存的路径
-		me.setBaseUploadPath(PathKit.getWebRootPath()+File.separator+"myupload");
+		me.setBaseUploadPath(PathKit.getWebRootPath()+File.separator+"upload");
 		// ApiConfigKit 设为开发模式可以在开发阶段输出请求交互的 xml 与 json 数据
 		ApiConfigKit.setDevMode(me.getDevMode());
 		
@@ -86,20 +75,25 @@ public class APPConfig extends JFinalConfig{
 		me.add("/share", ShareController.class,"/view");
 		//可以去掉 /front
 		me.add("/pay", WeixinPayController.class,"/front");
-		me.add("/", IndexController.class,"/front");
 		me.add("/tuser", TUserController.class,"/back");
 		
 		me.add("/ajax", AjaxController.class);
 		me.add("/constellation", ConstellationController.class,"/front");
 		me.add("/wxuser", UserController.class,"/front");
-		me.add("/file", FileController.class,"/front");
+		
+		
+		
+		
 		me.add("/ajaxfile", AjaxFileContorlller.class,"/front");
 		
 		
+		//修改wangeditor js代码,配置文件上传服务
+		me.add("/", FileController.class);
 		//增加编辑路由
 		me.add("/edit",EditController.class);
 		//增加日记列表查看路由
 		me.add("/myview",ListViewController.class);
+		//增加文件上传路由配置
 	}
 	
 	/**
@@ -121,7 +115,7 @@ public class APPConfig extends JFinalConfig{
 //		me.add(arp);
 		
 		// ehcahce插件配置
-		me.add(new EhCachePlugin());
+		//me.add(new EhCachePlugin());
 		
 		
 //		SchedulerPlugin sp = new SchedulerPlugin("job.properties");

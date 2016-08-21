@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="../wangeditor/css/wangEditor-mobile.css">
 		
 		
-		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
 
 		<style>
 			ul {
@@ -31,7 +31,7 @@
 		</header>
 		
 		<div class="mui-content">
-			<form class="mui-input-group">
+			<form class="mui-input-group" method="post" enctype="multipart/form-data" >
 				<h3>
 				<div class="mui-input-row">
 					<label>标题</label>
@@ -44,7 +44,7 @@
 					<textarea id="riji_detail" style="width:100%;height:100%;">
 						<h3>济南的冬天</h3>
 						<p><font color="#ff0000">对于一个在北平住惯的人，像我，冬天要是不刮风，便觉得是奇迹；济南的冬天是没有风声的。</font></p>
-						<p>对于一个刚由伦敦回来的人，像我，冬天要能看得见日光，便觉得是怪事；济南的冬天是响晴的……<img src="http://wangeditor.github.io/expressions/20.gif"></p>
+						<p>对于一个刚由伦敦回来的人，像我，冬天要能看得见日光，便觉得是怪事；济南的冬天是响晴的……</p>
 						<blockquote style="display: block; border-left-width: 5px; border-left-style: solid; border-left-color: rgb(208, 229, 242); padding: 4px 0px 4px 10px; margin: 4px 0px; background-color: rgb(241, 241, 241);">
 							老舍1930年前后来到山东，先后在济南齐鲁大学和青岛山东大学任教7年之久，山东被称为他的“第二故乡”。
 						</blockquote>
@@ -55,7 +55,6 @@
 						<li><span>四世同堂</span></li>
 					</ul>
 					<p><br></p>
-					<img src="img/daminghu.png" style="max-width:100%;">
 					<p>（图为大明湖雪景）</p>
 					<p><br></p>
 					</textarea>
@@ -73,9 +72,9 @@
 		<script type="text/javascript" src="../wangeditor/js/lib/zepto.touch.js"></script>
 		<script type="text/javascript" src="../wangeditor/js/wangEditor-mobile.js"></script>
 		
-		
 		<script>
-		
+		  
+
 			$(function () {
 
 			// 全局配置
@@ -84,8 +83,13 @@
 			// 生成编辑器
 			var editor = new ___E('riji_detail');
 
+			 // 配置自定义上传的开关
+			//editor.config.customUpload = true; 
+			// 配置上传事件，uploadInit方法已经在上面定义了
+		    //editor.config.customUploadInit = uploadInit;  
+
 			// 自定义配置
-			editor.config.uploadImgUrl = '/upload';
+			editor.config.uploadImgUrl = '/uploadfile';
 
 			// editor.config.menus = ['bold', 'quote', 'list','img'];
 
