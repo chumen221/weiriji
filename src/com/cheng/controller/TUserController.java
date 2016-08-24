@@ -22,7 +22,7 @@ public class TUserController extends Controller {
 		System.out.println(JsonKit.toJson(users));
 		
 		setAttr("users", users);
-		render("tuser.jsp");
+		renderText("tuser.jsp");
 	}
 	
 }

@@ -37,7 +37,7 @@ public class IndexController extends Controller{
 		//查询最新课程
 //		List<Coures> list = Coures.dao.getCouresByTop(2);
 //		setAttr("coures", list);
-		render("index.jsp");
+		renderText(openId);
 	}
 	
 	

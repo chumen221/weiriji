@@ -28,7 +28,6 @@ public class FileController extends Controller {
 		//获取文件名称
 		// 异步上传时，无法通过uploadFile.getFileName()获取文件名
 		String fileName = uploadFile.getFileName();
-		System.out.println("图片路径是："+fileName);
         
         // 异步上传时，无法通过File source = uploadFile.getFile();获取文件
         File source = new File(PathKit.getWebRootPath() + "/upload/" + fileName); // 获取临时文件对象
@@ -77,7 +76,7 @@ public class FileController extends Controller {
             
         } else {
             source.delete();
-            renderText("message", "只允许上传png,jpg,jpeg,gif,bmp类型的图片文件");
+            renderText("只允许上传png,jpg,jpeg,gif,bmp类型的图片文件");
         }
         
 		

@@ -51,17 +51,17 @@ public class MenuManager  {
 	    	ViewButton btn11 = new ViewButton();  
 	        btn11.setName("写日记");  
 	        btn11.setType("view");  
-	        btn11.setUrl("http://2a535f60.ngrok.natapp.cn/edit");
+	        btn11.setUrl("http://699b1bf0.ngrok.natapp.cn/edit");
 	  	  
 	        ViewButton btn21 = new ViewButton();  
 	        btn21.setName("我的记录");  
 	        btn21.setType("view");  
-	        btn21.setUrl("http://2a535f60.ngrok.natapp.cn/myview/mylist"); 
+	        btn21.setUrl("http://699b1bf0.ngrok.natapp.cn/myview/mylist"); 
 	        
 	        ViewButton btn31 = new ViewButton();  
 	        btn31.setName("留言墙");  
 	        btn31.setType("view");  
-	        btn31.setUrl("http://www.baidu.com");  
+	        btn31.setUrl("http://699b1bf0.ngrok.natapp.cn/oauth");  
 	          
 	        ClickButton btn32 = new ClickButton();  
 	        btn32.setName("任务清单");  
